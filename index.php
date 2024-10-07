@@ -1,20 +1,24 @@
 <?php
+
+
 function getRandomPassword($number)
 {
-    //* Creo una stringa vuota dove inserire la mia password
+    // Creo una stringa vuota dove inserire la mia password
     $password = "";
 
-    // * Aggiungo i caratteri che dovranno essere inclusi nella pw
-    $characters = "abcdefghijklmnopqrstuvwxyzABDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    // Creo una stringa con i caratteri che dovranno essere inclusi nella pw
+    $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,/!#$%-&";
+
+    // Qui verrà inserito il singolo carattere randomico
     $randomChar = "";
 
     // # Creo un ciclo per aggiungere ogni volta una lettera alla pw
 
     //| Per ogni carattere in $characters...
-    for ($i = 0; $i <= $number; $i++) {
+    for ($i = 0; $i < $number; $i++) {
 
         //| Prendine uno random
-        $randomChar = mb_substr(
+        $randomChar = substr(
             //@ Agisci su $characters
             $characters,
             //@ Parti da una posizione random
@@ -23,12 +27,13 @@ function getRandomPassword($number)
             1
         );
 
+
         //| Inseriscilo in password
         $password .= $randomChar;
     }
 
     //# Restituiscimi password
-    var_dump($password);
+
     return $password;
 }
 ?>
@@ -55,7 +60,7 @@ function getRandomPassword($number)
                 <h3 class="text-light">Create your own password</h3>
             </div>
 
-            <section id="form" class="bg-light p-3">
+            <section id="form" class="bg-light p-3 border rounded-3 my-3">
                 <form action="index.php" method="get">
                     <div class="form-group row d-flex justify-content-start my-2">
                         <label class="col-5" for="passwordLength">Number of characters:</label>
@@ -67,7 +72,12 @@ function getRandomPassword($number)
                 </form>
             </section>
 
-            <p class="text-light">New password: <?php getRandomPassword($_GET["passwordLength"]) ?></p>
+            <div class="bg-white p-3 border rounded-3">
+                <p class="fw-bold fs-3">New password: <?php if (isset($_GET["passwordLength"])) { ?>
+                        "<?= getRandomPassword($_GET["passwordLength"]) ?>"
+                </p>
+            <?php } ?>
+            </div>
         </div>
     </main>
 </body>
