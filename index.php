@@ -16,7 +16,26 @@
 </head>
 
 <body>
+    <main>
+        <div class="container">
+            <div class="text-center">
+                <h1 class="my-3 text-secondary">Strong Password Generator</h1>
+                <h3 class="text-light">Create your own password</h3>
+            </div>
 
+            <section id="form" class="bg-light p-3">
+                <form action="index.php" method="get">
+                    <div class="form-group row d-flex justify-content-start my-2">
+                        <label class="col-5" for="passwordLength">Number of characters:</label>
+                        <input class="col-3" type="number" id="passwordLength" name="passwordLength" class="form-control">
+                    </div>
+
+                    <button class="btn btn-primary">Invia</button>
+                    <button class="btn btn-secondary">Annulla</button>
+                </form>
+            </section>
+        </div>
+    </main>
 </body>
 
 </html>
