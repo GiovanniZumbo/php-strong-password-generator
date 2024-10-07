@@ -1,4 +1,36 @@
 <?php
+function getRandomPassword($number)
+{
+    //* Creo una stringa vuota dove inserire la mia password
+    $password = "";
+
+    // * Aggiungo i caratteri che dovranno essere inclusi nella pw
+    $characters = "abcdefghijklmnopqrstuvwxyzABDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $randomChar = "";
+
+    // # Creo un ciclo per aggiungere ogni volta una lettera alla pw
+
+    //| Per ogni carattere in $characters...
+    for ($i = 0; $i <= $number; $i++) {
+
+        //| Prendine uno random
+        $randomChar = mb_substr(
+            //@ Agisci su $characters
+            $characters,
+            //@ Parti da una posizione random
+            random_int(0, strlen($characters)),
+            //@ Prendimi un solo carattere
+            1
+        );
+
+        //| Inseriscilo in password
+        $password .= $randomChar;
+    }
+
+    //# Restituiscimi password
+    var_dump($password);
+    return $password;
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +66,8 @@
                     <button class="btn btn-secondary">Annulla</button>
                 </form>
             </section>
+
+            <p class="text-light">New password: <?php getRandomPassword($_GET["passwordLength"]) ?></p>
         </div>
     </main>
 </body>
